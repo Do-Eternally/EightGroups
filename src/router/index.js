@@ -22,5 +22,10 @@ const router = new VueRouter({
       name: "Home",
       component: () => import("../pages/Home"),
     },
+    {
+      path: "/list",
+      name: "List",
+      component: () => import("../pages/List"),
+    },
   ],
 });
