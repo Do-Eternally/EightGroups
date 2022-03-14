@@ -1,12 +1,12 @@
 <template>
-  <div class="mine">
-    <h1>我的</h1>
+  <div class="country">
+    <h1>云村</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Mine",
+  name: "Country",
   data() {
     return {};
   },

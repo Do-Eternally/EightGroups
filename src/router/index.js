@@ -5,7 +5,7 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      redirect: "/home",
+      redirect: "/find",
     },
     {
       path: "/login",
@@ -18,19 +18,29 @@ const router = new VueRouter({
       component: () => import("../pages/Reg"),
     },
     {
-      path: "/home",
-      name: "Home",
-      component: () => import("../pages/Home"),
+      path: "/find",
+      name: "Find",
+      component: () => import("../pages/Find"),
     },
     {
-      path: "/list",
-      name: "List",
-      component: () => import("../pages/List"),
+      path: "/blog",
+      name: "Bolg",
+      component: () => import("../pages/Bolg"),
     },
     {
       path: "/mine",
       name: "Mine",
       component: () => import("../pages/Mine"),
+    },
+    {
+      path: "/attention",
+      name: "Attention",
+      component: () => import("../pages/Attention"),
+    },
+    {
+      path: "/country",
+      name: "Country",
+      component: () => import("../pages/Country"),
     },
   ],
 });

@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <router-link to="/home">首页</router-link>
-    <router-link to="/list">列表</router-link>
-    <router-link to="/mine">个人中心</router-link>
-    <router-link to="/reg">注册</router-link>
-    <router-link to="/login">登录</router-link>
+    <van-tabbar route>
+      <van-tabbar-item icon="home-o" to="/find">发现</van-tabbar-item>
+      <van-tabbar-item icon="search" to="/bolg">博客</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" to="/mine">我的</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="/attention">关注</van-tabbar-item>
+      <van-tabbar-item icon="setting-o" to="/country">云村</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
@@ -17,12 +19,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
