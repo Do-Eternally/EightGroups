@@ -27,5 +27,11 @@ const router = new VueRouter({
       name: "List",
       component: () => import("../pages/List"),
     },
+    {
+      path: "/mine",
+      name: "Mine",
+      component: () => import("../pages/Mine"),
+    },
   ],
 });
+export default router;
