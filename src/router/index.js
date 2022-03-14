@@ -23,7 +23,7 @@ const router = new VueRouter({
       component: () => import("../pages/Find"),
     },
     {
-      path: "/blog",
+      path: "/bolg",
       name: "Bolg",
       component: () => import("../pages/Bolg"),
     },
