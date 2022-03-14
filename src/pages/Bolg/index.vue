@@ -1,12 +1,12 @@
 <template>
-  <div class="mine">
-    <h1>我的</h1>
+  <div class="bolg">
+    <h1>博客</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Mine",
+  name: "Bolg",
   data() {
     return {};
   },

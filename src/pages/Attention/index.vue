@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="attention">
+    <h1>关注</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Attention",
   data() {
     return {};
   },

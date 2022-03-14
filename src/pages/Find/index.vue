@@ -1,12 +1,12 @@
 <template>
-  <div class="list">
-    <h1>List</h1>
+  <div class="find">
+    <h1>发现</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "List",
+  name: "Find",
   data() {
     return {};
   },
