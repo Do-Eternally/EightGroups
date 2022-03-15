@@ -15,8 +15,8 @@ export default {
 
   methods: {},
   created() {
-    console.log(111, this.$parent.$axios);
-    this.$axios.get("/playlist/catlist").then((res) => {
+    console.log(111, this.$axios);
+    this.$axios.get("/api/playlist/catlist").then((res) => {
       console.log(res);
     });
   },
