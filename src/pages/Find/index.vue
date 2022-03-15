@@ -1,6 +1,6 @@
 <template>
   <div class="find">
-    <h1>发现</h1>
+    <router-link to="/find/songslist">歌单</router-link>
   </div>
 </template>
 
