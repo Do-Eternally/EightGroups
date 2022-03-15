@@ -1,12 +1,12 @@
 <template>
-  <div class="songs-list">
-    <h1>歌单列表</h1>
+  <div class="ranklist">
+    <h1>排行榜</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SongsList",
+  name: "RankList",
   data() {
     return {};
   },
@@ -15,9 +15,8 @@ export default {
 
   methods: {},
   created() {
-    // console.log(111, this.$axios);
-    this.$axios.get("/api/playlist/catlist").then((res) => {
-      console.log(res);
+    this.$axios.get("/api/toplist/detail").then((res) => {
+      console.log("排行榜", res);
     });
   },
   mounted() {},

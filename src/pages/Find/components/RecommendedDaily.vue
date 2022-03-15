@@ -1,12 +1,12 @@
 <template>
-  <div class="songs-list">
-    <h1>歌单列表</h1>
+  <div class="recommend">
+    <h1>每日推荐</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SongsList",
+  name: "RecommendedDaily",
   data() {
     return {};
   },
@@ -15,8 +15,7 @@ export default {
 
   methods: {},
   created() {
-    // console.log(111, this.$axios);
-    this.$axios.get("/api/playlist/catlist").then((res) => {
+    this.$axios.get("/api/personalized").then((res) => {
       console.log(res);
     });
   },
