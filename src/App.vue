@@ -14,6 +14,10 @@
 <script>
 export default {
   name: "App",
+  created() {
+    const token = localStorage.getItem("token");
+    this.$store.commit("changeToken", token);
+  },
   components: {},
 };
 </script>

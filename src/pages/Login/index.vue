@@ -34,7 +34,7 @@
         </van-form>
       </div>
       <div class="email" v-if="!show">
-        <van-form @submit="onSubmit">
+        <van-form @submit="emailSubmit">
           <van-field
             v-model="email"
             name="邮箱"
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { reqPhoneReg } from "../../api/user";
+import { reqPhoneReg, reqEmailreg } from "../../api/user";
 import { Notify } from "vant";
 import { setToken } from "../../util/auth";
 export default {
@@ -87,8 +87,15 @@ export default {
       if (result.code == 200) {
         Notify({ type: "primary", message: "登陆成功" });
         setToken(result.token);
+        this.$store.commit("changeToken", result.token);
+        localStorage.setItem("token", result.token);
+        this.$router.push("/");
       }
     },
+    // async emailSubmit(values) {
+    //   const result = await reqEmailreg(values);
+    //   console.log("result",result);
+    // },
   },
   created() {},
   mounted() {},

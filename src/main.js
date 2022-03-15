@@ -5,15 +5,13 @@ import vant from "vant";
 import vuex from "vuex";
 import "vant/lib/index.css";
 import instance from "./util";
+import store from "./store";
 Vue.use(vant);
 Vue.use(vuex);
 Vue.config.productionTip = false;
 new Vue({
   render: (h) => h(App),
   router,
-  created() {
-    // this.$axios = axios;
-    // console.dir(this.$axios);
-  },
+  store,
 }).$mount("#app");
 Vue.prototype.$axios = instance;

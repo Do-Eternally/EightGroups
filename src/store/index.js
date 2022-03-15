@@ -1,10 +1,7 @@
 import Vue from "vue";
-
 import Vuex from "vuex";
-
-
+import user from "./user";
 Vue.use(Vuex);
-
 const store = new Vuex.Store({
   state: {
     token: "",
@@ -14,7 +11,5 @@ const store = new Vuex.Store({
       state.token = payload;
     },
   },
-  modules: { address },
 });
-
 export default store;
