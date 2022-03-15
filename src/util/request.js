@@ -9,7 +9,9 @@ const instance = axios.create({
 // 请求拦截
 instance.interceptors.request.use(
   function (config) {
+    config.withCredentials = true;
     console.log(config);
+    return config;
   },
   function (error) {
     return Promise.reject(error);
@@ -22,12 +24,12 @@ instance.interceptors.response.use(
     return response.data;
   },
   function (error) {
-    const { status } = error.response;
-    if (status === 401) {
-      Notify({ type: "warning", message: "未授权，请先登录" });
-      // 直接打回登录页面
-      window.location.href = "#/login";
-    }
+    // const { status } = error.response;
+    // if (status === 401) {
+    //   Notify({ type: "warning", message: "未授权，请先登录" });
+    //   // 直接打回登录页面
+    //   window.location.href = "#/login";
+    // }
     return Promise.reject(error);
   }
 );
