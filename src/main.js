@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import vant from "vant";
 import "vant/lib/index.css";
+import instance from "./util";
 Vue.use(vant);
 Vue.config.productionTip = false;
 new Vue({
@@ -13,3 +14,4 @@ new Vue({
     // console.dir(this.$axios);
   },
 }).$mount("#app");
+Vue.prototype.$axios = instance;
