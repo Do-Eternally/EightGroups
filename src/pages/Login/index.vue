@@ -13,7 +13,7 @@
         <van-form @submit="PhoneSubmit">
           <van-field
             v-model="phone"
-            name="手机号"
+            name="phone"
             label="手机号"
             placeholder="手机号"
             :rules="[{ required: true, message: '请填写手机号' }]"
@@ -21,7 +21,7 @@
           <van-field
             v-model="password"
             type="password"
-            name="密码"
+            name="password"
             label="密码"
             placeholder="密码"
             :rules="[{ required: true, message: '请填写密码' }]"
@@ -62,7 +62,9 @@
 </template>
 
 <script>
-import {reqPhoneReg} from "../../api/user"
+import { reqPhoneReg } from "../../api/user";
+import { Notify } from "vant";
+import { setToken } from "../../util/auth";
 export default {
   name: "Login",
   data() {
@@ -79,8 +81,13 @@ export default {
   methods: {
     async PhoneSubmit(values) {
       console.log("submit", values);
-      const result = await reqPhoneReg(values)
-      console.log(result)
+      const result = await reqPhoneReg(values);
+      console.log("res", result);
+      console.log("result.token", result.token);
+      if (result.code == 200) {
+        Notify({ type: "primary", message: "登陆成功" });
+        setToken(result.token);
+      }
     },
   },
   created() {},

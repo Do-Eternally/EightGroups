@@ -1,8 +1,7 @@
 import axios from "axios";
-import { Notify } from "vant";
 
 const instance = axios.create({
-  baseURL: "http://192.168.1.98:3000/",
+  // baseURL: "http://192.168.1.98:3000/",
   timeout: 60000, //5s后响应超时
 });
 
@@ -11,6 +10,9 @@ instance.interceptors.request.use(
   function (config) {
     config.withCredentials = true;
     console.log(config);
+    if (getToken()) {
+      config.headers.authorization = `Bearer ${getToken()}`;
+    }
     return config;
   },
   function (error) {
