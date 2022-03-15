@@ -9,8 +9,5 @@ Vue.config.productionTip = false;
 new Vue({
   render: (h) => h(App),
   router,
-  created() {
-    this.$axios = axios;
-    console.dir(this.$axios);
-  },
 }).$mount("#app");
+Vue.prototype.$axios = axios;

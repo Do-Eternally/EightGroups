@@ -1,6 +1,7 @@
 <template>
   <div class="find">
     <router-link to="/find/songslist">歌单</router-link>
+    <router-view></router-view>
   </div>
 </template>
 

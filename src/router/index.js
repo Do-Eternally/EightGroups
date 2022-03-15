@@ -24,6 +24,7 @@ const router = new VueRouter({
       children: [
         {
           path: "songslist",
+          name: "SongsList",
           component: () => import("../pages/Find/components/SongsList.vue"),
         },
       ],

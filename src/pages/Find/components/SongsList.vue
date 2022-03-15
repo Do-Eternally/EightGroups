@@ -1,9 +1,10 @@
 <template>
-  <div class="songs-list">歌单列表</div>
+  <div class="songs-list">
+    <h1>歌单列表</h1>
+  </div>
 </template>
 
 <script>
-// import axios from "../../../";
 export default {
   name: "SongsList",
   data() {
@@ -14,7 +15,8 @@ export default {
 
   methods: {},
   created() {
-    axios.get("/playlist/catlist").then((res) => {
+    console.log(111, this.$parent.$axios);
+    this.$axios.get("/playlist/catlist").then((res) => {
       console.log(res);
     });
   },
