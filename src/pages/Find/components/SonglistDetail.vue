@@ -1,13 +1,23 @@
 <template>
   <div class="song-list-detail">
-    <h1>歌单详细</h1>
     <van-list
       v-model="loading"
       :finished="finished"
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <van-cell :center="true" size=""  v-for="item in list" :key="item.id" :title="item.name"></van-cell>
+      <van-cell
+        :center="true"
+        size="large"
+        v-for="item in list"
+        :key="(item.id = Math.random())"
+        :title="item.name" :icon="item.al.picUrl"
+      >
+      <template #default>
+          
+          {{item.ar[0].name}}
+      </template>
+      </van-cell>
     </van-list>
   </div>
 </template>
@@ -27,20 +37,20 @@ export default {
   methods: {
     onLoad() {
       let id = this.id;
-      this.onLoad = true;
+      this.loading = true;
       this.$axios
         .get("/api/playlist/track/all", {
           params: {
             id,
             limit: 10,
             offset: this.offset,
-            // offset: 101,
           },
         })
         .then((res) => {
+          console.log(res);
           this.list = [...this.list, ...res.songs];
-          this.onLoad = false;
-          this.offset += 10;
+          this.loading = false;
+          this.offset += 1;
           if (res.songs.length < 10) {
             this.finished = true;
           }

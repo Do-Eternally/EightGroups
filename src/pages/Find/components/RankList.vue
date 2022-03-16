@@ -11,7 +11,7 @@
         v-for="item in list"
         :key="item.trackUpdateTime + Math.random()"
         :price="getplayCount(item.playCount)" currency=""
-        :title="item.description"
+        :title="item.description||item.name"
         :thumb="item.coverImgUrl"
         @click="toplistDetail(item.id)"
       />
