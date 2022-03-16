@@ -21,11 +21,34 @@ const router = new VueRouter({
       path: "/find",
       name: "Find",
       component: () => import("../pages/Find"),
+      children: [
+        {
+          path: "songslist", //歌单
+          name: "SongsList",
+          component: () => import("../pages/Find/components/SongsList.vue"),
+        },
+        {
+          path: "recommended", //每日推荐
+          name: "RecommendedDaily",
+          component: () =>
+            import("../pages/Find/components/RecommendedDaily.vue"),
+        },
+        {
+          path: "ranklist", //排行榜
+          name: "RankList",
+          component: () => import("../pages/Find/components/RankList"),
+        },
+        {
+          path: "privatefm", //私人FM
+          name: "PrivateFM",
+          component: () => import("../pages/Find/components/PrivateFM"),
+        },
+      ],
     },
     {
       path: "/blog",
-      name: "Bolg",
-      component: () => import("../pages/Bolg"),
+      name: "Blog",
+      component: () => import("../pages/Blog"),
     },
     {
       path: "/mine",
