@@ -141,16 +141,16 @@ export default {
   height: 844px;
   background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201711%2F29%2F20171129115720_JMX8s.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649988674&t=4abfdf5c7ebf66b454e17736fce32c68);
 }
-.box{
+.box {
   padding-top: 50px;
-  opacity: .6;
+  opacity: 0.8;
   width: 100%;
   height: 300px;
   background-color: #fff;
 }
-a {
-  /* color: white; */
-}
+/* a {
+   color: white;
+} */
 .loginStyle {
   font-size: 20px;
   display: flex;
