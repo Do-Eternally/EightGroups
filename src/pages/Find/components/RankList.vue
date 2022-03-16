@@ -1,6 +1,21 @@
 <template>
   <div class="ranklist">
-    <h1>排行榜</h1>
+    <!-- <h1>排行榜</h1> -->
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <van-card
+        v-for="item in list"
+        :key="item.trackUpdateTime + Math.random()"
+        :price="getplayCount(item.playCount)" currency=""
+        :title="item.description"
+        :thumb="item.coverImgUrl"
+        @click="toplistDetail(item.id)"
+      />
+    </van-list>
   </div>
 </template>
 
@@ -8,24 +23,42 @@
 export default {
   name: "RankList",
   data() {
-    return {};
+    return {
+      list: [],
+      loading: false,
+      finished: false,
+    };
   },
-  computed: {},
-  watch: {},
+  computed: {
+    getplayCount() {
+      return function (x) {
+        return parseInt(x / 10000) + "w播放";
+      };
+    },
+  },
+  methods: {
+    onLoad() {
+      this.finished = true;
+    },
+    //排行榜内歌曲
+    toplistDetail(id) {
+      console.log(id);
+      this.$router.push({
+        name: "SonglistDetail",
+        query: {
+          id,
+        },
+      });
+    },
+  },
 
-  methods: {},
+  //vue实例创建时调取排行榜信息
   created() {
-    /* fetch(
-      "http://192.168.1.98:3000/login/cellphone?phone=17634428483&password=cc20010227"
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      }); */
     this.$axios.get("/api/toplist").then((res) => {
       console.log("排行榜", res);
+      if (res.code == 200) {
+        this.list = res.list;
+      }
     });
   },
   mounted() {},
@@ -33,4 +66,7 @@ export default {
 };
 </script>
 <style scoped>
+/* .ranklist {
+  padding: 0 10px;
+} */
 </style>

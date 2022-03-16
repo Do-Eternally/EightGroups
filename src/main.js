@@ -12,7 +12,7 @@ new Vue({
   router,
   store,
   created() {
-    console.log(this.$store);
+    // console.log(this.$store);
   },
 }).$mount("#app");
 Vue.prototype.$axios = instance;

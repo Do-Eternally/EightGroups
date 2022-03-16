@@ -46,6 +46,11 @@ const router = new VueRouter({
       ],
     },
     {
+      path: "/songlist",
+      name: "SonglistDetail",
+      component: () => import("../pages/Find/components/SonglistDetail"),
+    },
+    {
       path: "/blog",
       name: "Blog",
       component: () => import("../pages/Blog"),
