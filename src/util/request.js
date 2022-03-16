@@ -10,7 +10,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     config.withCredentials = true;
-    console.log(config);
+    // console.log(config);
     if (getToken()) {
       config.headers.authorization = `Bearer ${getToken()}`;
     }
