@@ -13,5 +13,8 @@ new Vue({
   render: (h) => h(App),
   router,
   store,
+  created() {
+    // console.log(this.$store);
+  },
 }).$mount("#app");
 Vue.prototype.$axios = instance;
