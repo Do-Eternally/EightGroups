@@ -1,0 +1,217 @@
+<template>
+  <div class="sidebar">
+    <van-cell is-link @click="showPopup">
+      <!-- 猫猫头像 -->
+      <van-image
+        round
+        src="https://img01.yzcdn.cn/vant/cat.jpeg"
+        class="avater"
+      />
+      <div class="cc">寻找一只小猫猫></div>
+    </van-cell>
+    <!-- <van-popup v-model="show">请登录账户</van-popup> -->
+    <!-- 黑的大块 -->
+    <div class="one">
+      <div class="header">
+        <div class="pl">
+          <div class="pp"><strong>开通黑胶VIP</strong></div>
+          <div class="ll">立享21项专属特权></div>
+        </div>
+      </div>
+      <!-- 圆形图标 -->
+      <van-button class="oo" round type="info">会员中心</van-button>
+      <!-- 滚动通知 -->
+      <van-notice-bar
+        class="tt"
+        text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+      />
+      <van-image class="ava" src="https://img01.yzcdn.cn/vant/cat.jpeg" />
+    </div>
+    <div class="two">
+      <div>
+        <van-cell title="消息中心" is-link url="/api/playlist/catlist/event" />
+      </div>
+      <div>
+        <van-cell title="云贝中心" is-link url="/api/playlist/catlist/yunbei" />
+      </div>
+      <div>
+        <van-cell
+          title="创作者中心"
+          is-link
+          url="/api/playlist/catlist/dj/recommend/type"
+        />
+      </div>
+    </div>
+    <div class="three">
+      <p>音乐服务</p>
+      <van-cell
+        title="演出"
+        is-link
+        url="/api/playlist/catlist/mv/exclusive/rcmd"
+      />
+      <van-cell title="商城" is-link url="/api/playlist/catlist/user/update" />
+      <van-cell
+        title="Beat专区"
+        is-link
+        url="/api/playlist/catlist/playlist/create"
+      />
+      <van-cell
+        title="口袋彩铃"
+        is-link
+        url="/api/playlist/catlist/top/album"
+      />
+      <van-cell
+        title="游戏专区"
+        is-link
+        url="/api/playlist/catlist/dj/toplist/pay"
+      />
+    </div>
+    <div class="four">
+      <p>其他</p>
+      <van-cell title="设置" is-link url="/vant/mobile.html" />
+      <van-cell title="夜间模式" is-link url="/vant/mobile.html" />
+    </div>
+  </div>
+</template>
+
+<script>
+import { Popup } from "vant";
+import { Image as VanImage } from "vant";
+import { Button } from "vant";
+import { NoticeBar } from "vant";
+import { Toast } from "vant";
+import { Cell, CellGroup } from "vant";
+import { Icon } from "vant";
+import { Uploader } from "vant";
+export default {
+  data() {
+    return {
+      show: true,
+      // list: [],
+    };
+  },
+  computed: {},
+  watch: {},
+
+  methods: {
+    showPopup() {
+      this.show = true;
+    },
+  },
+  created() {
+    //调取消息中心
+    this.$axios.get("/api/playlist/catlist/event").then((res) => {
+      console.log(res);
+    });
+    //调取云贝中心
+    this.$axios.get("/api/playlist/catlist/yunbei").then((res) => {
+      console.log(res);
+    });
+    //调取创作者中心
+    this.$axios.get("/api/playlist/catlist/dj/recommend/type").then((res) => {
+      console.log(res);
+    });
+    //调取演出
+    this.$axios.get("/api/playlist/catlist/mv/exclusive/rcmd").then((res) => {
+      console.log(res);
+    });
+    //调取商城
+    this.$axios.get("/api/playlist/catlist/user/update").then((res) => {
+      console.log(res);
+    });
+    //调取Beast专区
+    this.$axios.get("/api/playlist/catlist/playlist/create").then((res) => {
+      console.log(res);
+    });
+    //调取Beast专区
+    this.$axios.get("/api/playlist/catlist/playlist/create").then((res) => {
+      console.log(res);
+    });
+    //调取口袋彩铃
+    this.$axios.get("/api/playlist/catlist/top/album").then((res) => {
+      console.log(res);
+    });
+    //调取游戏专区
+    this.$axios.get("/api/playlist/catlist/dj/toplist/pay").then((res) => {
+      console.log(res);
+    });
+  },
+  mounted() {},
+  components: {},
+};
+</script>
+<style scoped>
+/* .van-popup {
+  width: 80px;
+  height: 80px;
+} */
+.van-cell {
+  border-radius: 50px;
+  border: 1 solid;
+  /* display: flex; */
+  position: relative;
+
+  /* background-color: rgb(241, 131, 131); */
+}
+.cc {
+  /* opacity: 0.5; */
+  position: absolute;
+  left: 45px;
+  top: 8px;
+}
+.one {
+  width: 100%;
+  height: 150px;
+  border: 1 solid;
+  background-color: rgb(228, 66, 66);
+  border-radius: 30px;
+  position: relative;
+}
+.pl {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+.oo {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.tt {
+  position: absolute;
+  left: auto;
+  top: 95px;
+  width: 75%;
+  height: 60px;
+}
+.van-image__img {
+  /* justify-content: center; */
+  /* display: flex; */
+  /* flex: 1; */
+  width: 15px !important;
+  height: 15px;
+}
+.avater {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  vertical-align: top;
+  font-size: 0;
+}
+.ava {
+  position: absolute;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  vertical-align: top;
+  font-size: 0;
+  right: 20px;
+  bottom: 10px;
+}
+.van-cell__value--alone {
+  display: flex;
+}
+/* .van-image.p {
+  display: flex;
+} */
+</style>
