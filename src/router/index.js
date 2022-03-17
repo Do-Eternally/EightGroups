@@ -85,43 +85,54 @@ const router = new VueRouter({
             meta: { showFooter: true },
         },
         {
-            path: "/sidebar",
+            path: "/sidebar", //侧边栏
             name: "Sidebar",
             component: () =>
                 import ("../pages/Sidebar"),
             meta: { showFooter: false },
         },
-<<<<<<< HEAD
+        {
+            path: "/xiaoxi", //侧边栏>消息中心
+            name: "Xiaoxi",
+            component: () =>
+                import ("../pages/Sidebar/components/xiaoxi.vue"),
+        },
+        {
+            path: "/yunbei", //侧边栏>云贝中心
+            name: "Yunbei",
+            component: () =>
+                import ("../pages/Sidebar/components/yunbei.vue"),
+        },
+        {
+            path: "/chuangzuo", //侧边栏>创作中心
+            name: "Chuangzuo",
+            component: () =>
+                import ("../pages/Sidebar/components/chuangzuo.vue"),
+        },
+        {
+            path: "/yanchu", //侧边栏>创作中心
+            name: "Yanchu",
+            component: () =>
+                import ("../pages/Sidebar/components/yanchu.vue"),
+        },
+        {
+            path: "/youxi", //侧边栏>创作中心
+            name: "Youxi",
+            component: () =>
+                import ("../pages/Sidebar/components/youxi.vue"),
+        },
+        {
+            path: "/koudai", //侧边栏>创作中心
+            name: "Koudai",
+            component: () =>
+                import ("../pages/Sidebar/components/koudai.vue"),
+        },
+        {
+            path: "/beat", //侧边栏>创作中心
+            name: "Beat",
+            component: () =>
+                import ("../pages/Sidebar/components/beat.vue"),
+        },
     ],
-=======
-      ],
-    },
-    {
-      path: "/songlist",
-      name: "SonglistDetail",
-      component: () => import("../pages/Find/components/SonglistDetail"),
-    },
-    {
-      path: "/blog",
-      name: "Blog",
-      component: () => import("../pages/Blog"),
-    },
-    {
-      path: "/mine",
-      name: "Mine",
-      component: () => import("../pages/Mine"),
-    },
-    {
-      path: "/attention",
-      name: "Attention",
-      component: () => import("../pages/Attention"),
-    },
-    {
-      path: "/country",
-      name: "Country",
-      component: () => import("../pages/Country"),
-    },
-  ],
->>>>>>> 3b27de4973d5231e1451cdc382c97a5854259074
 });
 export default router;
