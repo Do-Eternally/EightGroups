@@ -9,7 +9,7 @@
       />
       <div class="cc">{{ user.name }}</div>
     </van-cell>
-    <van-popup v-model="show">请登录账户</van-popup>
+    <!-- <van-popup v-model="show">请登录账户</van-popup> -->
     <!-- 黑的大块 -->
     <div class="one">
       <div class="header">
