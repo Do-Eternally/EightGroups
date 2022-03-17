@@ -29,42 +29,23 @@
     </div>
     <div class="two">
       <div>
-        <van-cell title="消息中心" is-link url="/api/playlist/catlist/event" />
+        <!-- <van-cell title="消息中心" to="./components/event.vue" /> -->
+        <van-cell title="消息中心" :to="{ name: 'Xiaoxi' }" />
       </div>
       <div>
-        <van-cell title="云贝中心" is-link url="/api/playlist/catlist/yunbei" />
+        <van-cell title="云贝中心" :to="{ name: 'Yunbei' }" />
       </div>
       <div>
-        <van-cell
-          title="创作者中心"
-          is-link
-          url="/api/playlist/catlist/dj/recommend/type"
-        />
+        <van-cell title="创作者中心" :to="{ name: 'Chuangzuo' }" />
       </div>
     </div>
     <div class="three">
       <p>音乐服务</p>
-      <van-cell
-        title="演出"
-        is-link
-        url="/api/playlist/catlist/mv/exclusive/rcmd"
-      />
-      <van-cell title="商城" is-link url="/api/playlist/catlist/user/update" />
-      <van-cell
-        title="Beat专区"
-        is-link
-        url="/api/playlist/catlist/playlist/create"
-      />
-      <van-cell
-        title="口袋彩铃"
-        is-link
-        url="/api/playlist/catlist/top/album"
-      />
-      <van-cell
-        title="游戏专区"
-        is-link
-        url="/api/playlist/catlist/dj/toplist/pay"
-      />
+      <van-cell title="演出" :to="{ name: 'Yanchu' }" />
+      <van-cell title="商城" is-link url="/api/user/update" />
+      <van-cell title="Beat专区" :to="{ name: 'Beat' }" />
+      <van-cell title="口袋彩铃" :to="{ name: 'Koudai' }" />
+      <van-cell title="游戏专区" :to="{ name: 'Youxi' }" />
     </div>
     <div class="four">
       <p>其他</p>
@@ -75,14 +56,9 @@
 </template>
 
 <script>
-import { Popup } from "vant";
+import { Popup, Uploader, Icon, Toast, NoticeBar, Button } from "vant";
 import { Image as VanImage } from "vant";
-import { Button } from "vant";
-import { NoticeBar } from "vant";
-import { Toast } from "vant";
 import { Cell, CellGroup } from "vant";
-import { Icon } from "vant";
-import { Uploader } from "vant";
 export default {
   data() {
     return {
@@ -97,44 +73,15 @@ export default {
     showPopup() {
       this.show = true;
     },
+    goMsg() {
+      // this.axios.
+    },
   },
   created() {
     //调取消息中心
-    this.$axios.get("/api/playlist/catlist/event").then((res) => {
-      console.log(res);
-    });
-    //调取云贝中心
-    this.$axios.get("/api/playlist/catlist/yunbei").then((res) => {
-      console.log(res);
-    });
-    //调取创作者中心
-    this.$axios.get("/api/playlist/catlist/dj/recommend/type").then((res) => {
-      console.log(res);
-    });
-    //调取演出
-    this.$axios.get("/api/playlist/catlist/mv/exclusive/rcmd").then((res) => {
-      console.log(res);
-    });
-    //调取商城
-    this.$axios.get("/api/playlist/catlist/user/update").then((res) => {
-      console.log(res);
-    });
-    //调取Beast专区
-    this.$axios.get("/api/playlist/catlist/playlist/create").then((res) => {
-      console.log(res);
-    });
-    //调取Beast专区
-    this.$axios.get("/api/playlist/catlist/playlist/create").then((res) => {
-      console.log(res);
-    });
-    //调取口袋彩铃
-    this.$axios.get("/api/playlist/catlist/top/album").then((res) => {
-      console.log(res);
-    });
-    //调取游戏专区
-    this.$axios.get("/api/playlist/catlist/dj/toplist/pay").then((res) => {
-      console.log(res);
-    });
+    //   this.$axios.get("/api/event").then((res) => {
+    //     console.log(res);
+    //   });
   },
   mounted() {},
   components: {},
