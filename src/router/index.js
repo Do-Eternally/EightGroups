@@ -5,7 +5,7 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      redirect: "/find",
+      redirect: "/find/recommended",
     },
     {
       path: "/login",
@@ -23,9 +23,7 @@ const router = new VueRouter({
       path: "/find",
       name: "Find",
       component: () => import("../pages/Find"),
-      meta: {
-        showFooter: true,
-      },
+      meta: { showFooter: true },
       children: [
         {
           path: "songslist", //歌单
@@ -63,10 +61,9 @@ const router = new VueRouter({
     {
       path: "/mine",
       name: "Mine",
-      component: () => import("../pages/Mine"),
+      component: () => import("../pages/Sidebar"),
       meta: { showFooter: true },
     },
-
     {
       path: "/attention",
       name: "Attention",
@@ -80,12 +77,6 @@ const router = new VueRouter({
       meta: { showFooter: true },
     },
     {
-      path: "/sidebar",
-      name: "Sidebar",
-      component: () => import("../pages/Sidebar"),
-      meta: { showFooter: false },
-    },
-    {
       path: "/songlist",
       name: "SonglistDetail",
       component: () => import("../pages/Find/components/SonglistDetail"),
@@ -94,6 +85,47 @@ const router = new VueRouter({
       path: "/player",
       name: "Player",
       component: () => import("../pages/Player"),
+    },
+    /* {
+      path: "/sidebar", //侧边栏
+      name: "Sidebar",
+      component: () => import("../pages/Sidebar"),
+      meta: { showFooter: false },
+    }, */
+    {
+      path: "/xiaoxi", //侧边栏>消息中心
+      name: "Xiaoxi",
+      component: () => import("../pages/Sidebar/components/xiaoxi.vue"),
+    },
+    {
+      path: "/yunbei", //侧边栏>云贝中心
+      name: "Yunbei",
+      component: () => import("../pages/Sidebar/components/yunbei.vue"),
+    },
+    {
+      path: "/chuangzuo", //侧边栏>创作中心
+      name: "Chuangzuo",
+      component: () => import("../pages/Sidebar/components/chuangzuo.vue"),
+    },
+    {
+      path: "/yanchu", //侧边栏>演出
+      name: "Yanchu",
+      component: () => import("../pages/Sidebar/components/yanchu.vue"),
+    },
+    {
+      path: "/youxi", //侧边栏>游戏专区
+      name: "Youxi",
+      component: () => import("../pages/Sidebar/components/youxi.vue"),
+    },
+    {
+      path: "/koudai", //侧边栏>口袋彩铃
+      name: "Koudai",
+      component: () => import("../pages/Sidebar/components/koudai.vue"),
+    },
+    {
+      path: "/beat", //侧边栏>best专区
+      name: "Beat",
+      component: () => import("../pages/Sidebar/components/beat.vue"),
     },
   ],
 });

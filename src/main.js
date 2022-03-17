@@ -13,12 +13,12 @@ Vue.use(vant);
 Vue.use(vuex);
 Vue.config.productionTip = false;
 new Vue({
-  render: (h) => h(App),
-  router,
-  store,
-  created() {
-    // console.log(this.$store);
-  },
+    render: (h) => h(App),
+    router,
+    store,
+    created() {
+        // console.log(this.$store);
+    },
 }).$mount("#app");
 Vue.prototype.$axios = instance;
 router.beforeEach((to, from, next) => {
@@ -29,3 +29,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+Vue.prototype.$axios = instance;

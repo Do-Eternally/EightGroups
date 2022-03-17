@@ -23,7 +23,7 @@ export default {
     return {
       song: {
         h: {
-          br:22
+          br: 22,
         },
         al: {},
       },
@@ -77,10 +77,10 @@ export default {
     let audio = this.$refs.audio;
     // let audio1 = document.querySelector("audio");
     console.log(this.$refs.audio);
-    audio.onseeked=function(ev){
+    audio.onseeked = function (ev) {
       console.log(ev);
-      console.log(ev.timeStamp/1000);
-    }
+      console.log(ev.timeStamp / 1000);
+    };
     // audio.getStartDate()
   },
   components: {},
@@ -90,7 +90,23 @@ export default {
 img {
   border-radius: 500px;
 }
-audio{
-  /* tr */
+img {
+  border-radius: 300px;
+  position: absolute;
+  top: 223px;
+  left: 56px;
+  -webkit-animation: circle 10s infinite linear;
+}
+@-webkit-keyframes circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+audio {
+  position: absolute;
+  top: 56%;
 }
 </style>
