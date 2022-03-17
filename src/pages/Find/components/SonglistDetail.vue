@@ -8,15 +8,20 @@
     >
       <van-cell
         :center="true"
+        @click="goSongs(item.al.id,index)"
         size="large"
-        v-for="item in list"
+        v-for="(item,index) in list"
         :key="(item.id = Math.random())"
-        :title="item.name" :icon="item.al.picUrl"
+        :title="item.name"
+        :icon="item.al.picUrl"
       >
-      <template #default>
-          
-          {{item.ar[0].name}}
-      </template>
+        <!-- <template #title>
+          {{item.name}}
+          <i class="chuchu">{{item.alia[0]}}</i>
+      </template> -->
+        <template #default>
+          {{ item.ar[0].name }}
+        </template>
       </van-cell>
     </van-list>
   </div>
@@ -32,9 +37,21 @@ export default {
       finished: false,
       offset: 0,
       id: this.$route.query.id,
+      ids: [],
     };
   },
   methods: {
+    goSongs(x,y) {
+      // console.log(x,y);
+      let id = this.ids[y].id
+      console.log("id",id);
+      this.$router.push({
+        name: "Player",
+        query: {
+          id,
+        },
+      });
+    },
     onLoad() {
       let id = this.id;
       this.loading = true;
@@ -49,6 +66,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.list = [...this.list, ...res.songs];
+          this.ids = [...this.ids, ...res.privileges];
           this.loading = false;
           this.offset += 1;
           if (res.songs.length < 10) {
@@ -65,4 +83,8 @@ export default {
 };
 </script>
 <style scoped>
+.chuchu {
+  text-align: center;
+  text-overflow: hidden;
+}
 </style>
