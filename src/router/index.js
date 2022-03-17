@@ -91,37 +91,6 @@ const router = new VueRouter({
                 import ("../pages/Sidebar"),
             meta: { showFooter: false },
         },
-<<<<<<< HEAD
     ],
-=======
-      ],
-    },
-    {
-      path: "/songlist",
-      name: "SonglistDetail",
-      component: () => import("../pages/Find/components/SonglistDetail"),
-    },
-    {
-      path: "/blog",
-      name: "Blog",
-      component: () => import("../pages/Blog"),
-    },
-    {
-      path: "/mine",
-      name: "Mine",
-      component: () => import("../pages/Mine"),
-    },
-    {
-      path: "/attention",
-      name: "Attention",
-      component: () => import("../pages/Attention"),
-    },
-    {
-      path: "/country",
-      name: "Country",
-      component: () => import("../pages/Country"),
-    },
-  ],
->>>>>>> 3b27de4973d5231e1451cdc382c97a5854259074
 });
 export default router;
