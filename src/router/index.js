@@ -85,13 +85,6 @@ const router = new VueRouter({
             meta: { showFooter: true },
         },
         {
-            path: "/sidebar",
-            name: "Sidebar",
-            component: () =>
-                import ("../pages/Sidebar"),
-            meta: { showFooter: false },
-        },
-        {
             path: "/songlist",
             name: "SonglistDetail",
             component: () =>

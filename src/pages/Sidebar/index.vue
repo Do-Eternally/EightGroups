@@ -56,14 +56,9 @@
 </template>
 
 <script>
-import { Popup } from "vant";
+import { Popup, Uploader, Icon, Toast, NoticeBar, Button } from "vant";
 import { Image as VanImage } from "vant";
-import { Button } from "vant";
-import { NoticeBar } from "vant";
-import { Toast } from "vant";
 import { Cell, CellGroup } from "vant";
-import { Icon } from "vant";
-import { Uploader } from "vant";
 export default {
   data() {
     return {
