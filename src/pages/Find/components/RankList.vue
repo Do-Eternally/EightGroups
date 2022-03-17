@@ -69,4 +69,5 @@ export default {
 /* .ranklist {
   padding: 0 10px;
 } */
+
 </style>
