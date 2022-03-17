@@ -33,7 +33,7 @@ export default {
     return {
       showLoading: true,
       list: [],
-      loading: true,
+      loading: false,
       finished: false,
     };
   },
@@ -47,7 +47,9 @@ export default {
   watch: {},
 
   methods: {
-    onLoad() {},
+    onLoad() {
+      this.loading=true
+    },
     goLogin() {
       this.$router.push("/login");
     },

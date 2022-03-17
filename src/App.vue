@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <van-nav-bar
-      title="标题"
+      :title="$route.name"
       left-text="返回"
       right-text="首页"
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
+      fixed
+      placeholder
     />
     <router-view></router-view>
-    <van-tabbar route v-if="$route.meta.showFooter">
+    <div style="height: 5rem"></div>
+    <van-tabbar route v-if="$route.meta.showFooter" id="homenav">
       <van-tabbar-item icon="home-o" to="/find">发现</van-tabbar-item>
       <van-tabbar-item icon="search" to="/blog">博客</van-tabbar-item>
       <van-tabbar-item icon="friends-o" to="/mine">我的</van-tabbar-item>
@@ -54,6 +57,8 @@ export default {
     // this.isLogin();
     let data = await this.isLogin();
     this.$store.commit("user/changeUser", data);
+    // let user=this.$store.state.user.userinfo
+    // console.log("Vuex", this.$store.state.user.userinfo);
   },
 };
 </script>
@@ -68,4 +73,16 @@ export default {
   background-color: pink;
   margin-right: 10px;
 }
+/* van-tabbar{
+  position: sticky;
+  bottom: 0;
+} */
+/* .headnav{
+  position: fixed;
+  top: 0;
+} */
+/* #homenav{
+  position: sticky;
+  bottom: 0;
+} */
 </style>

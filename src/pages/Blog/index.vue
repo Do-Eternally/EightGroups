@@ -208,7 +208,7 @@ export default {
       // console.log(this.ss, 444);
     });
 
-    this.$axios.get("/song/detail").then((res) => {
+    this.$axios.get("/api/song/detail").then((res) => {
       console.log(res, 666);
       this.ss = res.result;
       console.log(this.ss, 444);

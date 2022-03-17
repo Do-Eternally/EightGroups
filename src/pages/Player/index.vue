@@ -68,7 +68,7 @@ export default {
           })
           .then((res) => {
             console.log("歌曲url", res.data);
-            /*  if (res.code == 200)  */ this.songDetail = res.data[0];
+            this.songDetail = res.data[0];
           });
       });
     //歌曲url
