@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     changeUser(state, payload) {
-      console.log("dwa",payload);
+      // console.log("dwa",payload);
       payload = JSON.parse(JSON.stringify(payload));
       state.userinfo = payload;
     },

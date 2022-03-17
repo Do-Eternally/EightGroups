@@ -1,6 +1,7 @@
 <template>
   <div class="recommend">
     <!-- <h1>每日推荐</h1> -->
+    <van-loading type="spinner" color="#1989fa" v-if="showLoading" vertical />
     <van-empty
       description="请先登录"
       v-if="!$store.state.user.userinfo"
@@ -30,8 +31,9 @@ export default {
   name: "RecommendedDaily",
   data() {
     return {
+      showLoading: true,
       list: [],
-      loading: false,
+      loading: true,
       finished: false,
     };
   },
@@ -45,14 +47,12 @@ export default {
   watch: {},
 
   methods: {
-    onLoad() {
-      this.finished = true;
-    },
+    onLoad() {},
     goLogin() {
       this.$router.push("/login");
     },
     toplistDetail(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "SonglistDetail",
         query: {
@@ -63,12 +63,20 @@ export default {
   },
   created() {
     // console.log(this.$store);
+    this.loading = true;
     this.$axios.get("/api/recommend/resource").then((res) => {
-      console.log("推荐", res);
+      // console.log("推荐", res);
       if (res.code == 200) this.list = res.recommend;
     });
+    this.$nextTick(function () {
+      this.showLoading = false;
+      this.finished = true;
+    });
   },
-  mounted() {},
+  mounted() {
+    /*  this.finished = true;
+    this.showLoading = false; */
+  },
   components: {},
 };
 </script>

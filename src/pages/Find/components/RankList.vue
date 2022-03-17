@@ -1,6 +1,7 @@
 <template>
   <div class="ranklist">
     <!-- <h1>排行榜</h1> -->
+    <van-loading type="spinner" color="#1989fa" v-if="showLoading" vertical />
     <van-list
       v-model="loading"
       :finished="finished"
@@ -10,8 +11,9 @@
       <van-card
         v-for="item in list"
         :key="item.trackUpdateTime + Math.random()"
-        :price="getplayCount(item.playCount)" currency=""
-        :title="item.description||item.name"
+        :price="getplayCount(item.playCount)"
+        currency=""
+        :title="item.description || item.name"
         :thumb="item.coverImgUrl"
         @click="toplistDetail(item.id)"
       />
@@ -26,6 +28,7 @@ export default {
     return {
       list: [],
       loading: false,
+      showLoading: true,
       finished: false,
     };
   },
@@ -38,7 +41,7 @@ export default {
   },
   methods: {
     onLoad() {
-      this.finished = true;
+      // this.finished = true;
     },
     //排行榜内歌曲
     toplistDetail(id) {
@@ -55,10 +58,14 @@ export default {
   //vue实例创建时调取排行榜信息
   created() {
     this.$axios.get("/api/toplist").then((res) => {
-      console.log("排行榜", res);
+      // console.log("排行榜", res);
       if (res.code == 200) {
         this.list = res.list;
       }
+    });
+    this.$nextTick(function () {
+      this.showLoading = false;
+      // this.finished = true;
     });
   },
   mounted() {},
@@ -69,5 +76,4 @@ export default {
 /* .ranklist {
   padding: 0 10px;
 } */
-
 </style>

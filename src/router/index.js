@@ -22,6 +22,7 @@ const router = new VueRouter({
     {
       path: "/find",
       name: "Find",
+      redirect:"/find/recommended",
       component: () => import("../pages/Find"),
       meta: { showFooter: true },
       children: [

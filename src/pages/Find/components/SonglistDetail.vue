@@ -15,10 +15,6 @@
         :title="item.name"
         :icon="item.al.picUrl"
       >
-        <!-- <template #title>
-          {{item.name}}
-          <i class="chuchu">{{item.alia[0]}}</i>
-      </template> -->
         <template #default>
           {{ item.ar[0].name }}
         </template>
