@@ -4,10 +4,10 @@
       <!-- 猫猫头像 -->
       <van-image
         round
-        src="https://img01.yzcdn.cn/vant/cat.jpeg"
+        :src="$store.state.user.userinfo.avatarUrl"
         class="avater"
       />
-      <div class="cc">{{ user.name }}</div>
+      <div class="cc">{{ $store.state.user.userinfo.nickname }}</div>
     </van-cell>
     <!-- <van-popup v-model="show">请登录账户</van-popup> -->
     <!-- 黑的大块 -->
@@ -83,6 +83,8 @@ export default {
     //     console.log(res);
     //   });
     // this.$store.state.user.userinfo;
+    //在这里获取用户登录信息，进行打印调取数据
+    // console.log("在这", this.$store.state.user.userinfo);
   },
   mounted() {},
   components: {},
