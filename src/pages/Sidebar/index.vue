@@ -49,8 +49,8 @@
     </div>
     <div class="four">
       <p>其他</p>
+      <van-cell title="听歌" :to="{ name: 'Tingge' }" />
       <van-cell title="设置" is-link url="/vant/mobile.html" />
-      <van-cell title="夜间模式" is-link url="/vant/mobile.html" />
     </div>
   </div>
 </template>

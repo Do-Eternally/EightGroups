@@ -145,6 +145,12 @@ const router = new VueRouter({
             component: () =>
                 import ("../pages/Sidebar/components/beat.vue"),
         },
+        {
+            path: "/tingge", //侧边栏>听歌
+            name: "Tingge",
+            component: () =>
+                import ("../pages/Sidebar/components/tingge.vue"),
+        },
     ],
 });
 export default router;
