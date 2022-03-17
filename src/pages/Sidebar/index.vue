@@ -7,9 +7,9 @@
         src="https://img01.yzcdn.cn/vant/cat.jpeg"
         class="avater"
       />
-      <div class="cc">寻找一只小猫猫></div>
+      <div class="cc">{{ user.name }}</div>
     </van-cell>
-    <!-- <van-popup v-model="show">请登录账户</van-popup> -->
+    <van-popup v-model="show">请登录账户</van-popup>
     <!-- 黑的大块 -->
     <div class="one">
       <div class="header">
@@ -82,6 +82,7 @@ export default {
     //   this.$axios.get("/api/event").then((res) => {
     //     console.log(res);
     //   });
+    // this.$store.state.user.userinfo;
   },
   mounted() {},
   components: {},
