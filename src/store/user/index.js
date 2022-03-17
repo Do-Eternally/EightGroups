@@ -1,8 +1,16 @@
-export default {//vuex----用户信息管理
+export default {
+  //vuex----用户信息管理
   namespaced: true,
   state: {
-      mas:"测试"
+    msg: "测试",
+    userinfo: {},
   },
-  mutations: {},
+  mutations: {
+    changeUser(state, payload) {
+      console.log("dwa",payload);
+      payload = JSON.parse(JSON.stringify(payload));
+      state.userinfo = payload;
+    },
+  },
   actions: {},
 };

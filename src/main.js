@@ -21,3 +21,11 @@ new Vue({
   },
 }).$mount("#app");
 Vue.prototype.$axios = instance;
+router.beforeEach((to, from, next) => {
+  if (to.meta.needLogin == true) {
+    next("/login");
+  } else {
+    next();
+  }
+});
+

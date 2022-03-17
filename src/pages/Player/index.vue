@@ -22,7 +22,9 @@ export default {
   data() {
     return {
       song: {
-        h: {},
+        h: {
+          br:22
+        },
         al: {},
       },
       songDetail: {},

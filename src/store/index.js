@@ -11,5 +11,8 @@ const store = new Vuex.Store({
       state.token = payload;
     },
   },
+  modules: {
+    user,
+  },
 });
 export default store;

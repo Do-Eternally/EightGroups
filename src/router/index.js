@@ -23,7 +23,9 @@ const router = new VueRouter({
       path: "/find",
       name: "Find",
       component: () => import("../pages/Find"),
-      meta: { showFooter: true },
+      meta: {
+        showFooter: true,
+      },
       children: [
         {
           path: "songslist", //歌单
