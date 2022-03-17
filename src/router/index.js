@@ -122,25 +122,25 @@ const router = new VueRouter({
                 import ("../pages/Sidebar/components/chuangzuo.vue"),
         },
         {
-            path: "/yanchu", //侧边栏>创作中心
+            path: "/yanchu", //侧边栏>演出
             name: "Yanchu",
             component: () =>
                 import ("../pages/Sidebar/components/yanchu.vue"),
         },
         {
-            path: "/youxi", //侧边栏>创作中心
+            path: "/youxi", //侧边栏>游戏专区
             name: "Youxi",
             component: () =>
                 import ("../pages/Sidebar/components/youxi.vue"),
         },
         {
-            path: "/koudai", //侧边栏>创作中心
+            path: "/koudai", //侧边栏>口袋彩铃
             name: "Koudai",
             component: () =>
                 import ("../pages/Sidebar/components/koudai.vue"),
         },
         {
-            path: "/beat", //侧边栏>创作中心
+            path: "/beat", //侧边栏>best专区
             name: "Beat",
             component: () =>
                 import ("../pages/Sidebar/components/beat.vue"),
