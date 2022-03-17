@@ -60,4 +60,25 @@ export default {
 };
 </script>
 <style scoped>
+
+img{
+  border-radius:300px ;
+  position: absolute;
+  top: 223px;
+  left: 56px;
+  -webkit-animation: circle 10s infinite linear;
+}
+@-webkit-keyframes circle{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+audio{
+  position: absolute;
+  top: 56%;
+
+}
 </style>

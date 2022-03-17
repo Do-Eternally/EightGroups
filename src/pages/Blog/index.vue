@@ -182,7 +182,7 @@ export default {
       console.log(id);
       this.$router.push({
         // path: "/find/songslist",
-        nameL: "SonglistDetail",
+        name: "SonglistDetail",
         query: {
           id,
         },
