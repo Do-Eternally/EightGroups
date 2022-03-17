@@ -2,7 +2,7 @@
   <div id="app">
     <van-nav-bar
       :title="$route.name"
-      left-text="返回"
+      :left-text="text"
       right-text="首页"
       left-arrow
       @click-left="onClickLeft"
@@ -34,10 +34,31 @@ export default {
     const token = localStorage.getItem("token");
     this.$store.commit("changeToken", token);
   },
+  computed: {
+    text() {
+      return this.$route.meta.showFooter
+        ? !this.$store.state.user.userinfo
+          ? "登录"
+          : "我的"
+        : "返回";
+    },
+  },
   methods: {
     onClickLeft() {
       // Toast("返回");
-      this.$router.go(-1);
+      // console.log("uesreinfo", this.$store.state.user);
+      // console.log("$route.meta", this.$route.meta);
+      if (this.$store.state.user.userinfo) {
+        if (!this.$route.meta.showFooter) {
+          this.$router.go(-1);
+        } else {
+          this.$router.push("/sidebar");
+          Toast("个人中心");
+        }
+      } else {
+        Toast("请登录");
+        this.$router.push("/login");
+      }
     },
     onClickRight() {
       this.$router.push("/");
@@ -49,14 +70,12 @@ export default {
         Toast("未登录");
         return false;
       } else {
-        console.log(res);
+        // console.log("登录",res);
         return res.data.profile;
       }
     },
   },
   async created() {
-    // console.log("vc", this);
-    // this.isLogin();
     let data = await this.isLogin();
     this.$store.commit("user/changeUser", data);
     // let user=this.$store.state.user.userinfo

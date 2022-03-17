@@ -12,18 +12,22 @@ import store from "./store";
 Vue.use(vant);
 Vue.use(vuex);
 Vue.config.productionTip = false;
-new Vue({
-    render: (h) => h(App),
-    router,
-    store,
-    created() {
-        // console.log(this.$store);
-    },
+let vm=new Vue({
+  render: (h) => h(App),
+  router,
+  store,
+  created() {
+    // console.log(this.$store);
+  },
 }).$mount("#app");
 Vue.prototype.$axios = instance;
-router.beforeEach((to, from, next) => {
+router.beforeEach(function(to, from, next){
   if (to.meta.needLogin == true) {
-    next("/login");
+    if (vm.$store.state.user.userinfo) {
+      next();
+    } else {
+      next("/login");
+    }
   } else {
     next();
   }

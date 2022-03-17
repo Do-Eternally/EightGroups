@@ -40,7 +40,7 @@ export default {
     goSongs(x,y) {
       // console.log(x,y);
       let id = this.ids[y].id
-      console.log("id",id);
+      // console.log("id",id);
       this.$router.push({
         name: "Player",
         query: {
@@ -60,7 +60,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.list = [...this.list, ...res.songs];
           this.ids = [...this.ids, ...res.privileges];
           this.loading = false;

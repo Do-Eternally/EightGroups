@@ -1,22 +1,22 @@
 <template>
   <div class="player">
-    <h1>歌名：{{ song.al.name }}</h1>
-    <!-- <i>时长：{{ song.dt / 1000 }}s</i><br /> -->
-    <i>时长：{{ dt }}</i
-    ><br />
-    <b>码率:{{ song.h.br }}</b>
-    <p>大小:{{ size }}Mb</p>
-    <img :src="song.al.picUrl" alt="" width="200" />
-    <p v-for="item in song.ar" :key="item.id + Math.random()">
-      {{ item.name }}
+    <h2>《{{ song.al.name }}》</h2>
+    <p>
+      <!-- <b>码率:{{ song.h.br }}</b> -->
+      <i>&nbsp;&nbsp;&nbsp;&nbsp;{{ dt }}</i>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;{{ size }}Mb</b>
+      <em>&nbsp;&nbsp;&nbsp;&nbsp;{{ singer() }}</em>
     </p>
-    <audio controls autoplay :src="songDetail.url" ref="audio">
-      <!-- <source  :type="songDetail.type" /> -->
-    </audio>
+    <img :src="song.al.picUrl" alt="" width="200" />
+    <div class="lyrics">
+      
+    </div>
+    <audio controls autoplay :src="songDetail.url" ref="audio"></audio>
   </div>
 </template>
 
 <script>
+import { Toast } from "vant";
 export default {
   name: "Player",
   data() {
@@ -26,11 +26,23 @@ export default {
           br: 22,
         },
         al: {},
+        ar: [],
       },
       songDetail: {},
+      lyrics: "",
     };
   },
   computed: {
+    singer() {
+      return () => {
+        let singers = "";
+        this.song.ar.forEach((item) => {
+          singers += item.name + "  /  ";
+        });
+        singers = singers.replace(/\/\s*$/, "");
+        return singers;
+      };
+    },
     size() {
       return (this.songDetail.size / 1024 / 1024).toFixed(2);
     },
@@ -49,64 +61,76 @@ export default {
 
   methods: {},
   created() {
+    let lyrics = null;
     // console.log();
     let id = this.$route.query.id;
     //歌曲详细
-    this.$axios
-      .get("/api/song/detail", {
-        params: {
-          ids: id,
-        },
-      })
-      .then((res) => {
-        this.song = res.songs[0];
-        this.$axios
-          .get("/api/song/url", {
-            params: {
-              id: this.song.id,
-            },
-          })
-          .then((res) => {
-            console.log("歌曲url", res.data);
-            this.songDetail = res.data[0];
-          });
+    let songDetail = this.$axios.get("/api/song/detail", {
+      params: {
+        ids: id,
+      },
+    });
+    songDetail.then((res) => {
+      this.song = res.songs[0];
+      //歌曲url
+      this.$axios
+        .get("/api/song/url", {
+          params: {
+            id: this.song.id,
+          },
+        })
+        .then((res) => {
+          // console.log("歌曲url", res.data);
+          this.songDetail = res.data[0];
+        });
+      //歌词
+      this.$axios.get("/api/lyric?id=" + this.song.id).then((res) => {
+        if (res.code == 200) {
+          this.lyrics = res.lrc.lyric;
+          console.log("lyrics", this.lyrics);
+        } else {
+          Toast("歌词加载失败!!!");
+        }
       });
-    //歌曲url
+    });
   },
   mounted() {
-    let audio = this.$refs.audio;
+    /* let audio = this.$refs.audio;
     // let audio1 = document.querySelector("audio");
     console.log(this.$refs.audio);
     audio.onseeked = function (ev) {
       console.log(ev);
       console.log(ev.timeStamp / 1000);
-    };
+    }; */
     // audio.getStartDate()
   },
   components: {},
 };
 </script>
 <style scoped>
-img {
-  border-radius: 500px;
+.lyrics {
+  height: 30em;
+  width: 100%;
+  border: 1px solid;
+}
+audio {
+  position: absolute;
+  bottom: 5em;
+  width: 100%;
 }
 img {
   border-radius: 300px;
   position: absolute;
-  top: 223px;
-  left: 56px;
-  -webkit-animation: circle 10s infinite linear;
+  top: 155px;
+  left: calc(50% - 100px);
+  animation: circle 10s infinite linear;
 }
-@-webkit-keyframes circle {
+@keyframes circle {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
-}
-audio {
-  position: absolute;
-  top: 56%;
 }
 </style>

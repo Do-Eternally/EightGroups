@@ -11,7 +11,7 @@
       v-model="loading"
       :finished="finished"
       finished-text="没有更多了"
-      @load="onLoad"
+      @load="onLoad" v-if="$store.state.user.userinfo"
     >
       <van-card
         v-for="item in list"
