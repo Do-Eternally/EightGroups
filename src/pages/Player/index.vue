@@ -9,7 +9,10 @@
     </p>
     <img :src="song.al.picUrl" alt="" width="200" />
     <div class="lyrics">
-      
+      <p class="lyc"></p>
+      <p class="lyc"></p>
+      <p class="lyc"></p>
+      <p class="lyc"></p>
     </div>
     <audio controls autoplay :src="songDetail.url" ref="audio"></audio>
   </div>
@@ -29,7 +32,9 @@ export default {
         ar: [],
       },
       songDetail: {},
-      lyrics: "",
+      lyrics: "", //歌词元数据
+      txt: [], //歌词文本
+      lycTime: [], //歌词对应时间
     };
   },
   computed: {
@@ -87,7 +92,30 @@ export default {
       this.$axios.get("/api/lyric?id=" + this.song.id).then((res) => {
         if (res.code == 200) {
           this.lyrics = res.lrc.lyric;
-          console.log("lyrics", this.lyrics);
+          // console.log("lyrics", this.lyrics);
+          //处理歌词数据
+          let lyc = res.lrc.lyric;
+          lyc = lyc.split(/\n/);
+          let txt = lyc.map((item) => {
+            return item.split(/\[*\]/)[1];
+          });
+          let lycTime = lyc.map((item) => {
+            let time = item.split(/\[*\]/)[0];
+            time = time.replace("[", "");
+            time = time.split(":");
+
+            return time;
+          });
+          lycTime = lycTime.map((item) => {
+            let time = item[0] * 60 * 1000 + item[1] * 1000;
+            if (isNaN(time)) return;
+            return time;
+          });
+          if (lycTime[lycTime.length - 1] == undefined) lycTime.pop();
+          this.txt = txt;
+          this.lycTime = lycTime;
+          // console.log("处理",  this.txt);
+          console.log("处理", this.lycTime);
         } else {
           Toast("歌词加载失败!!!");
         }
@@ -95,13 +123,12 @@ export default {
     });
   },
   mounted() {
-    /* let audio = this.$refs.audio;
+    let audio = this.$refs.audio;
     // let audio1 = document.querySelector("audio");
-    console.log(this.$refs.audio);
-    audio.onseeked = function (ev) {
-      console.log(ev);
-      console.log(ev.timeStamp / 1000);
-    }; */
+    // console.log(this.$refs.audio);
+    audio.addEventListener("timeupdate", function () {
+      // console.log(audio.currentTime);
+    });
     // audio.getStartDate()
   },
   components: {},
@@ -112,6 +139,8 @@ export default {
   height: 30em;
   width: 100%;
   border: 1px solid;
+  justify-content: space-between;
+  flex-direction: column;
 }
 audio {
   position: absolute;
