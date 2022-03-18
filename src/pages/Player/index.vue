@@ -7,12 +7,14 @@
       <b>&nbsp;&nbsp;&nbsp;&nbsp;{{ size }}Mb</b>
       <em>&nbsp;&nbsp;&nbsp;&nbsp;{{ singer() }}</em>
     </p>
-    <img :src="song.al.picUrl" alt="" width="200" />
     <div class="lyrics">
-      <p class="lyc"></p>
-      <p class="lyc"></p>
-      <p class="lyc"></p>
-      <p class="lyc"></p>
+      <img :src="song.al.picUrl" alt="" width="200" />
+      <p class="lyc">
+        <i>{{ txt[index - 3] }}</i>
+        <i>{{ txt[index - 2] }}</i>
+        <b>{{ txt[index - 1] }}</b>
+        <i>{{ txt[index + 1] }}</i>
+      </p>
     </div>
     <audio controls autoplay :src="songDetail.url" ref="audio"></audio>
   </div>
@@ -35,6 +37,7 @@ export default {
       lyrics: "", //歌词元数据
       txt: [], //歌词文本
       lycTime: [], //歌词对应时间
+      index: 0,
     };
   },
   computed: {
@@ -85,14 +88,12 @@ export default {
           },
         })
         .then((res) => {
-          // console.log("歌曲url", res.data);
           this.songDetail = res.data[0];
         });
       //歌词
       this.$axios.get("/api/lyric?id=" + this.song.id).then((res) => {
         if (res.code == 200) {
           this.lyrics = res.lrc.lyric;
-          // console.log("lyrics", this.lyrics);
           //处理歌词数据
           let lyc = res.lrc.lyric;
           lyc = lyc.split(/\n/);
@@ -108,14 +109,12 @@ export default {
           });
           lycTime = lycTime.map((item) => {
             let time = item[0] * 60 * 1000 + item[1] * 1000;
-            if (isNaN(time)) return;
+            if (isNaN(time)) return "~~~~~";
             return time;
           });
           if (lycTime[lycTime.length - 1] == undefined) lycTime.pop();
           this.txt = txt;
           this.lycTime = lycTime;
-          // console.log("处理",  this.txt);
-          console.log("处理", this.lycTime);
         } else {
           Toast("歌词加载失败!!!");
         }
@@ -124,10 +123,19 @@ export default {
   },
   mounted() {
     let audio = this.$refs.audio;
-    // let audio1 = document.querySelector("audio");
-    // console.log(this.$refs.audio);
-    audio.addEventListener("timeupdate", function () {
-      // console.log(audio.currentTime);
+    //正常播放歌词同步
+    audio.addEventListener("timeupdate", () => {
+      if (audio.currentTime * 1000 > this.lycTime[this.index]) {
+        this.index++;
+      }
+    });
+    //拖动播放矫正歌词进度
+    audio.addEventListener("seeked", () => {
+      let ct = audio.currentTime * 1000;
+      let index = this.lycTime.findIndex((item, index, arr) => {
+        return item < ct;
+      });
+      this.index = index;
     });
     // audio.getStartDate()
   },
@@ -138,9 +146,19 @@ export default {
 .lyrics {
   height: 30em;
   width: 100%;
+  position: relative;
   border: 1px solid;
+}
+.lyc {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  text-align: center;
   justify-content: space-between;
   flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
 }
 audio {
   position: absolute;
@@ -150,7 +168,7 @@ audio {
 img {
   border-radius: 300px;
   position: absolute;
-  top: 155px;
+  top: 0;
   left: calc(50% - 100px);
   animation: circle 10s infinite linear;
 }
