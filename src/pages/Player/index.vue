@@ -98,18 +98,19 @@ export default {
           let lyc = res.lrc.lyric;
           lyc = lyc.split(/\n/);
           let txt = lyc.map((item) => {
-            return item.split(/\[*\]/)[1];
+            let xx=item.split(/\[*\]/)[1]
+            if(!xx)return "~~~~~"
+            return xx;
           });
           let lycTime = lyc.map((item) => {
             let time = item.split(/\[*\]/)[0];
             time = time.replace("[", "");
             time = time.split(":");
-
             return time;
           });
           lycTime = lycTime.map((item) => {
             let time = item[0] * 60 * 1000 + item[1] * 1000;
-            if (isNaN(time)) return "~~~~~";
+            if (isNaN(time)) return;
             return time;
           });
           if (lycTime[lycTime.length - 1] == undefined) lycTime.pop();
